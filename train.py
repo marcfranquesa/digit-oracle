@@ -22,8 +22,12 @@ def get_loaders(
         [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
     )
 
-    mnist_trainset = datasets.MNIST(root="data", train=True, download=True, transform=tfs)
-    mnist_testset = datasets.MNIST(root="data", train=False, download=True, transform=tfs)
+    mnist_trainset = datasets.MNIST(
+        root="data", train=True, download=True, transform=tfs
+    )
+    mnist_testset = datasets.MNIST(
+        root="data", train=False, download=True, transform=tfs
+    )
 
     train_loader = torch.utils.data.DataLoader(
         dataset=mnist_trainset,
@@ -59,7 +63,7 @@ def train_epoch(
 
         if batch_idx % log_interval == 0:
             print(
-                "Train Epoch: {} [{}/{} ({:.0f}%)]".format(
+                "    Train Epoch: {} [{}/{} ({:.0f}%)]".format(
                     epoch,
                     batch_idx * len(data),
                     len(train_loader.dataset),

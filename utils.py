@@ -1,10 +1,11 @@
 from typing import Any, Dict
+
 import numpy as np
-from skimage.transform import resize
-from skimage.color import rgb2gray
-import yaml
-import torch
 import streamlit as st
+import torch
+import yaml
+from skimage.color import rgb2gray
+from skimage.transform import resize
 
 
 def get_nn_data() -> Dict[str, Any]:
@@ -16,6 +17,7 @@ def get_nn_data() -> Dict[str, Any]:
 def dump_nn_data(nns_data: Dict[str, Any]) -> None:
     with open("networks.yaml", "w") as f:
         yaml.dump(nns_data, f, default_flow_style=False)
+
 
 def transform(image: np.array) -> torch.tensor:
     """Transforms numpy array representing a RGB or RGBA image into

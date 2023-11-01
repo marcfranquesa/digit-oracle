@@ -1,11 +1,10 @@
-import streamlit as st
 import numpy as np
-
-from utils import get_nn_data, transform
-from streamlit_drawable_canvas import st_canvas
-
+import streamlit as st
 import torch
 import torch.nn as nn
+from streamlit_drawable_canvas import st_canvas
+
+from utils import get_nn_data, transform
 
 
 @st.cache_resource
@@ -23,17 +22,20 @@ def sidebar() -> nn.Module:
         st.markdown("# About")
         st.markdown(
             """
-            App to showcase networks that classify digits. Base code
+            App to showcase networks that classify digits. Networks mainly
             developed during the Deep Learning course at GCED, UPC.
-            Check my labwork [here](https://github.com/marcfranquesa/gced-coursework/tree/main/AA2).
         """
         )
+        st.markdown("Made by Marc Franquesa")
         st.markdown("---")
         selected = st.selectbox("Network: ", nns.keys())
         network = nns[selected]
-        st.button(f"**Accuracy**: {network['accuracy']}%", help="Accuracy is measured with the MNIST database")
+        st.button(
+            f"**Accuracy**: {network['accuracy']}%",
+            help="Accuracy is measured with the MNIST database",
+        )
         st.button(f"**Total Parameters**: {network['parameters']}")
-    
+
     return load_model(network["model_path"])
 
 
@@ -58,7 +60,7 @@ def page(network: nn.Module) -> None:
         output = network(data)
         number = output.argmax(dim=1, keepdim=True)[0, 0]
 
-        st.markdown(f"## Predicted: {number}")
+        st.markdown(f"## Prediction: {number}")
 
 
 def main() -> None:
