@@ -31,8 +31,8 @@ def sidebar() -> nn.Module:
         st.markdown("---")
         selected = st.selectbox("Network: ", nns.keys())
         network = nns[selected]
-        st.markdown(f"**Accuracy**: {network['accuracy']}%")
-        st.markdown(f"**Total Parameters**: {network['parameters']}")
+        st.button(f"**Accuracy**: {network['accuracy']}%", help="Accuracy is measured with the MNIST database")
+        st.button(f"**Total Parameters**: {network['parameters']}")
     
     return load_model(network["model_path"])
 
@@ -41,13 +41,13 @@ def page(network: nn.Module) -> None:
     st.markdown("# 🔮 Digit Oracle")
     data = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",
-        stroke_width=20,
+        stroke_width=30,
         stroke_color="black",
         background_color="#ffffff",
         background_image=None,
         update_streamlit=True,
-        height=500,
-        width=500,
+        height=350,
+        width=350,
         drawing_mode="freedraw",
         point_display_radius=0,
         display_toolbar=True,
