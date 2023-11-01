@@ -53,11 +53,12 @@ def page(network: nn.Module) -> None:
         display_toolbar=True,
         key="full_app",
     )
-    data = transform(data.image_data)
-    output = network(data)
-    number = output.argmax(dim=1, keepdim=True)[0, 0]
+    if data.image_data is not None:
+        data = transform(data.image_data)
+        output = network(data)
+        number = output.argmax(dim=1, keepdim=True)[0, 0]
 
-    st.markdown(f"## Predicted: {number}")
+        st.markdown(f"## Predicted: {number}")
 
 
 def main() -> None:
