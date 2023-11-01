@@ -1,20 +1,20 @@
-MLP:
-  accuracy: 91.72
+CNN:
+  accuracy: 98.4
   batch_size: 64
-  layers:
-  - - Linear
-    - - 784
-      - 128
-  - - ReLU
-    - []
-  - - Linear
-    - - 128
-      - 10
-  - - LogSoftmax
-    - - 1
   learning_rate: 0.0001
   log_interval: 100
+  model_path: models/CNN.pth
+  network: cnn.CNN
+  num_epochs: 10
+  parameters: 61706
+  test_batch_size: 64
+MLP:
+  accuracy: 96.89
+  batch_size: 64
+  learning_rate: 0.0001
+  log_interval: 100
+  model_path: models/MLP.pth
+  network: mlp.MLP
   num_epochs: 10
   parameters: 101770
-  path: models/MLP.pth
   test_batch_size: 64

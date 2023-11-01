@@ -1,5 +1,5 @@
 import random
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
 import torch
@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import datasets, transforms
 
+import networks
 from utils import dump_nn_data, get_nn_data
 
 
@@ -51,7 +52,6 @@ def train_epoch(
     network.train()
     for batch_idx, (data, target) in enumerate(train_loader):
         optimizer.zero_grad()
-        data = data.reshape(64, 784)
         output = network(data)
         loss = criterion(output, target)
         loss.backward()
@@ -82,7 +82,6 @@ def get_accuracy(
     network.eval()
     acc = 0
     for data, target in test_loader:
-        data = data.reshape(64, 784)
         output = network(data)
         acc += compute_accuracy(output, target)
 
@@ -92,9 +91,7 @@ def get_accuracy(
 
 
 def train(network_data: Dict[str, Any]) -> None:
-    network = nn.Sequential(
-        *[eval(f"nn.{layer[0]}(*{layer[1]})") for layer in network_data["layers"]]
-    )
+    network = eval(f"networks.{network_data['network']}()")
     train_loader, test_loader = get_loaders(
         network_data["batch_size"], network_data["test_batch_size"]
     )
@@ -104,7 +101,7 @@ def train(network_data: Dict[str, Any]) -> None:
         network.parameters(), lr=network_data["learning_rate"]
     )
 
-    for epoch in range(1):  # network_data["num_epochs"]):
+    for epoch in range(network_data["num_epochs"]):
         train_epoch(
             train_loader,
             network,
@@ -115,18 +112,26 @@ def train(network_data: Dict[str, Any]) -> None:
         )
 
     network_data["accuracy"] = get_accuracy(test_loader, network)
-    torch.save(network, network_data["path"])
+    torch.save(network, network_data["model_path"])
 
     return network_data
 
 
-def main() -> None:
+def main(network: Optional[str] = None) -> None:
     nns = get_nn_data()
-    for name, network_data in nns.items():
-        network_data = train(network_data)
-        nns[name] = network_data
 
-    dump_nn_data(nns)
+    if network == None:
+        for name, network_data in nns.items():
+            print(f"Starting {name}")
+            network_data = train(network_data)
+            nns[name] = network_data
+        dump_nn_data(nns)
+        return
+
+    if network not in nns:
+        raise ValueError(f"{network} is not defined")
+    network_data = train(nns[network])
+    nns[name] = network_data
 
 
 if __name__ == "__main__":
