@@ -1,0 +1,6 @@
+MLP:
+    layers:
+        - [Linear, [784, 128]]
+        - [ReLU, []]
+        - [Linear, [128, 10]]
+        - [LogSoftmax, [1]]
