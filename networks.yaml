@@ -1,6 +1,20 @@
 MLP:
-    layers:
-        - [Linear, [784, 128]]
-        - [ReLU, []]
-        - [Linear, [128, 10]]
-        - [LogSoftmax, [1]]
+  accuracy: 91.72
+  batch_size: 64
+  layers:
+  - - Linear
+    - - 784
+      - 128
+  - - ReLU
+    - []
+  - - Linear
+    - - 128
+      - 10
+  - - LogSoftmax
+    - - 1
+  learning_rate: 0.0001
+  log_interval: 100
+  num_epochs: 10
+  parameters: 101770
+  path: models/MLP.pth
+  test_batch_size: 64
