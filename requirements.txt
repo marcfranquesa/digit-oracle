@@ -1,5 +1,6 @@
 pre-commit
-scikit-imagestreamlit
+scikit-image
+streamlit
 streamlit_drawable_canvas
 torch
 torchvision

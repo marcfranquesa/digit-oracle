@@ -12,7 +12,7 @@ The app uses neural networks made during the [Deep Learning course](https://www.
 </p>
 
 ## Training
-Execute [*train.py*](train.py) to train the models found in [*networks*](networks). Parameters are defined in the [*networks.yaml*](networks.yaml) file. To add a new model create a new file in the [*networks*](networks) folder with the definition of the network. Next add the following parameters to the yaml file.
+Execute [*train.py*](src/train.py) to train the models found in [*networks*](src/networks). Parameters are defined in the [*networks.yaml*](src/networks.yaml) file. To add a new model create a new file in the [*networks*](src/networks) folder with the definition of the network. Next add the following parameters to the yaml file.
 ```
 exampleNN:                                ---> name given
   batch_size: 64                          ---> used in training
@@ -24,9 +24,9 @@ exampleNN:                                ---> name given
   test_batch_size: 64                     ---> used to compute accuracy
 ```
 
-The rest of the parameters will be filled after executing the [*train.py*](train.py) file.
+The rest of the parameters will be filled after executing the [*train.py*](src/train.py) file.
 
-To train a single model execute `main("<name given>")` in the [*train.py*](train.py) file. Executing `main()` will train them all.
+To train a single model execute `main("<name given>")` in the [*train.py*](src/train.py) file. Executing `main()` will train them all.
 
 Using:
 * [nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html) as loss function.
