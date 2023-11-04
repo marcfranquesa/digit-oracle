@@ -1,4 +1,5 @@
 import random
+import sys
 from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
@@ -136,7 +137,12 @@ def main(network: Optional[str] = None) -> None:
         raise ValueError(f"{network} is not defined")
     network_data = train(nns[network])
     nns[name] = network_data
+    dump_nn_data(nns)
 
 
 if __name__ == "__main__":
-    main()
+    args = sys.argv
+    if len(args) == 2:
+        main(args[1])
+    else:
+        main()

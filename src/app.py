@@ -9,7 +9,7 @@ from utils import get_nn_data, transform
 
 @st.cache_resource
 def load_model(path: str) -> nn.Module:
-    return torch.load(path)
+    return torch.load(f"src/{path}")
 
 
 def config() -> None:

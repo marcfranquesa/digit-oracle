@@ -26,7 +26,7 @@ exampleNN:                                ---> name given
 
 The rest of the parameters will be filled after executing the [*train.py*](src/train.py) file.
 
-To train a single model execute `main("<name given>")` in the [*train.py*](src/train.py) file. Executing `main()` will train them all.
+To train a single neural network run `python src/train.py <name_given>`. Running without an argument will train all models.
 
 Using:
 * [nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html) as loss function.
