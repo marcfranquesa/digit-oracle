@@ -9,7 +9,7 @@ from utils import get_nn_data, transform
 
 @st.cache_resource
 def load_model(path: str) -> nn.Module:
-    return torch.load(f"src/{path}")
+    return torch.load(path)
 
 
 def config() -> None:
@@ -22,8 +22,8 @@ def sidebar() -> nn.Module:
         st.markdown("# About")
         st.markdown(
             """
-            App to showcase networks that classify digits. Networks mainly
-            developed during the Deep Learning course at GCED, UPC.
+            App to showcase networks that classify digits. Networks seen
+            during the Deep Learning course at GCED, UPC.
         """
         )
         st.markdown("Made by Marc Franquesa")

@@ -3,18 +3,28 @@ CNN:
   batch_size: 64
   learning_rate: 0.0001
   log_interval: 100
-  model_path: models/CNN.pth
+  model_path: src/models/CNN.pth
   network: cnn.CNN
   num_epochs: 10
   parameters: 61706
   test_batch_size: 64
 MLP:
-  accuracy: 96.89
+  accuracy: 96.93
   batch_size: 64
   learning_rate: 0.0001
   log_interval: 100
-  model_path: models/MLP.pth
+  model_path: src/models/MLP.pth
   network: mlp.MLP
   num_epochs: 10
   parameters: 101770
+  test_batch_size: 64
+VGG16:
+  accuracy: 11.33
+  batch_size: 64
+  learning_rate: 0.0001
+  log_interval: 100
+  model_path: src/models/VGG16.pth
+  network: vgg16.VGG16
+  num_epochs: 10
+  parameters: 18923530
   test_batch_size: 64

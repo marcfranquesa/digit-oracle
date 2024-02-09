@@ -136,7 +136,7 @@ def main(network: Optional[str] = None) -> None:
     if network not in nns:
         raise ValueError(f"{network} is not defined")
     network_data = train(nns[network])
-    nns[name] = network_data
+    nns[network] = network_data
     dump_nn_data(nns)
 
 
